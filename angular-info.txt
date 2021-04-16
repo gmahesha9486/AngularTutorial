@@ -1,0 +1,27 @@
+ng serve
+ng serve --port 4201
+
+
+How to check the angular version
+ng --version
+
+
+npm --version
+
+------------------------------------------
+
+Create a simple angular project
+sudo npm install -g @angular/cli
+
+ng new my-first-app
+
+Run the application
+Go the project folder.
+
+ng serve
+OR
+ng serve --port 4201
+
+-----------------------
+
+package.json file
