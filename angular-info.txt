@@ -25,3 +25,27 @@ ng serve --port 4201
 -----------------------
 
 package.json file
+It mention about dependencies.
+
+app component : present in src folder.
+app.component.html : This is rendered to web browser.
+app.component.ts: this will be converted to normal JS
+
+---------
+check index.html file. IT has reference to :   <app-root></app-root>
+app-root is mentioned in : app.component.ts
+
+-----------------
+Data binding
+To use data binding, modify in : app.module.ts
+
+import {FormsModule} from '@angular/forms';  // This is a typescript feature
+
+imports: [
+    BrowserModule,
+    FormsModule
+  ],  // This is a feature understood by Angular.
+
+---------------------
+
+
