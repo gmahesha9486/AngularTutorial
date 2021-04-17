@@ -48,4 +48,46 @@ imports: [
 
 ---------------------
 
+Adding Bootstrap to project
+my-first-app>npm install --save bootstrap@3
+This command will install the bootstrap locally in this project. Not globally
+stores boorstrap in node_modules folder.
+
+Now Angular should be aware of this bootstrap. So, mention below details in angular.json file
+under "architect": {        "build": {
+
+ "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+
+---------------------
+
+Root application of our project is: app
+
+--------------------------
+main.ts
+
+This is the first code, which gets executed.
+
+-------------------------
+Creation of new component
+Create new component. then open the file: app.module.ts
+mention the new component name here.
+
+------------------------
+decorator
+
+import { NgModule } from '@angular/core';
+
+---------------------------
+
+Creation of new component using command
+projectFolder>ng generate component compName
+or use the command:  ng g c compName
+
+-------------------
+
+
+
 
