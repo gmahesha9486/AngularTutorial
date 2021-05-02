@@ -88,6 +88,141 @@ or use the command:  ng g c compName
 
 -------------------
 
+Data Binding
+
+String interpolation: {{data}}
+
+Property Binding : [property]="data"
+
+Event Binding: (event)  = "expression"
+
+Combination of Both: Two-way-Binding : [(ngModel)]="data"
+
+-----------------------------
+
+Method Declaration
+check server.component.ts
+getServerStatus(){
+        return 199;
+        //return this.serverStatus;
+    }
+Call the method from html file
+test value is: {{getServerStatus() }}
+
+--------------------------------
+
+Two way data binding
+
+<input type="text" class="form-control"
+ [(ngModel)]="serverName">
+
+----------
+Reset User
+<button
+	class="btn btn-primary"
+	[disabled]="username=== ''"
+	(click)="username=''">Reset User</button>
+
+----------------------
+
+Directives
+
+If directive
+ngIf is a structural dirctive. So use *
+It changes the structure of DOM
+
+-------------------
+For loop
+
+Getting the index of for loop
+
+<div *ngFor="let logItem of log; let i = index">
+
+
+--------------
+
+Create new project
+
+ng new ng4-complete-guide
+
+install bootstrap
+
+create component
+projFolder>ng g c recipes --skipTests true
+
+app/recipes
+RecipesComponent
+
+ng g c recipes/recipe-list --skipTests true
+ng g c recipes/recipe-detail --skipTests true
+ng g c recipes/recipe-detail --skipTests true
+
+ng g c recipes/recipe-list/recipe-item --skipTests true
+--------------
+ng g c shopping-list --skipTests true
+ng g c shopping-list/shopping-edit --skipTests true
+
+
+----------------------------
+
+Different way of creating member variables
+
+export class Ingredient{
+	constructor(public name: string, public amount: number){}
+}
+
+---------------------------------
+
+Module Introduction
+
+
+-------------------
+
+When someone gives src folder, without node_modules, do these things
+Run "npm install" inside this project folder to install all dependencies.
+
+------------------------
+
+Add this line in : tsconfig.json file. otherwise, you have to initialize the member variable of a class.
+"strictPropertyInitialization": false
+
+---------------------------
+
+  <router-outlet></router-outlet>  <!-- Angular provided directive to update our template to 
+    dynamically load component based on url path -->
+
+--------------------------------
+
+routerLink
+
+------------------
+
+sample class
+
+export class Employee {
+    id: number;
+    firstName: string;
+    lastName: string;
+    emailId: string;
+ 
+    constructor(id?: number, firstName?: string, lastName?: string, emailId?: string) {
+       
+    }
+    
+
+    /*
+    constructor(id?: number, firstName?: string, lastName?: string, emailId?: string) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailId = emailId;
+    }  */  
+}
+
+==========================================
+
+
+
 
 
 
