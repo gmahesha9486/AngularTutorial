@@ -15,6 +15,9 @@ sudo npm install -g @angular/cli
 
 ng new my-first-app
 
+To create app in no strict mode.
+ng new my-first-app --no-strict
+
 Run the application
 Go the project folder.
 
