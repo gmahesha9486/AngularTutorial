@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="col-md-6 offset-md-3">
+        <h3>User Login / Sign In</h3>
+        
+        <form #loginf="ngForm" (ngSubmit)="loginUser()">
+            <small class="text-danger">{{msg}}</small>
+            <div class="form-group">
+                <label>Email: </label>
+                <input type="email" class="form-control" id="email"
+                placeholder="Enter email" name="email" 
+                required
+                email 
+                #email="ngModel"
+                [(ngModel)]="user.emailId">
+               <!-- Why this line is not working  [class.is-invalid]="email.invalid && email.touched"> -->
+                <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+            </div>
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" class="form-control" id="password"
+                placeholder="Enter password" 
+                name="password"
+                required 
+                #password="ngModel"
+                [(ngModel)]="user.password">
+                <span class="text-danger" *ngIf="!password.valid && password.touched">Please enter password !</span>
+            </div>
+             
+            <button class="btn btn-info" type="submit"
+            [disabled]="!loginf.valid">Login</button>
+        
+        </form>
+       <!-- <small class ="float-right" (click)="gotoRegistration()">New User? Register Here.</small> -->
+       <small class ="float-right" [routerLink]= "['/registration']">New User? Register Here.</small> 
+        </div>
+    </div>    

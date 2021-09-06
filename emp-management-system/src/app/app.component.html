@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#NavBar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="NavBar"> 
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a routerLink = "employees" routerLinkActive="active" class="nav-link"> Employee List</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink = "create-employee" routerLinkActive="active" class="nav-link">Create Employee</a>
+            </li>
+            <li class="nav-item">
+                <button (click)="logout()">Logout</button>
+            </li>
+        </ul>
+    </div>    
+
+</nav>
+
+
+<div class="parentClass">
+    <h1 class="text-center">{{title}}</h1>
+    <div class="container">
+        <router-outlet></router-outlet>  <!-- Angular provided directive to update our template to 
+        dynamically load component based on url path -->
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <span>All Rights Reserved.</span>
+    </div>
+</footer>
