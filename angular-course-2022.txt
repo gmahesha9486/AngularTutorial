@@ -261,12 +261,44 @@ Services & Dependency Injection
 Create a service
 ng g s services/post
 
+
+
 ------------------------------------
 
 Routing
 
+add new constant in app.module.ts file
+
+RouterModule has special method we can call, forRoot, which allows us to register
+some routes for our main application.
+
+So forRoot will now receive our appRoutes constant here as an argument and with that, our routes
+are now registered in our Angular app on this RouterModule which gives us this routing functionality
+
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes :  Routes = [
+   { path : '', component: LoginComponent },
+   { path : 'regis', component: RegistrationComponent },
+   { path : 'login', component: LoginComponent }
+];
 
 
+ imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  
+add <router-outlet></router-outlet> in app.component.html file
+
+Create 2 component login, registration
+Add these code
+
+login.component.html
+<a [routerLink] = "['/regis']">Registration page new</a>  
+
+registration.component.html
+<a [routerLink] = "['/login']">Go to login page</a>
 
 ------------------------------------------
 Course Structures
