@@ -1,0 +1,310 @@
+Software Installation
+Install latest nodejs software from : https://nodejs.org/en/download/
+
+check the node, npm version in command prompt
+node -v
+This should be more than 14.17.6
+
+npm -v
+
+---------------------------
+Create and run simple application
+
+Angular Command LineInterface : CLI
+Best way to create angular project using CLI
+
+Run below commands
+Install cli globally
+npm install -g @angular/cli@latest   
+or you can use :  npm install -g @angular/cli
+
+Create angular project
+ng new my-first-app --no-strict
+
+Run the application
+ng serve
+Default port: 4200
+
+Run the application in different port
+ng serve --port 4201
+-----------------
+Logic behind the simple application
+
+App component is the base component
+app.component.ts is a typescript. this will be converted to type script
+
+How page is loading
+index.html
+app.component.ts : check the selector
+main.ts : this is the first code which gets executed.
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+This bootstraps the angular application by passing the AppModule
+
+check app.module.ts file
+bootstrap: [AppComponent]  //Lists all the comp which should be known to angular at the point of time it analyzes index.html file
+  
+--------------------
+
+
+-------------------------------------
+TypeScript
+Super set of Javascript.
+Strong typing : number, string
+to write much more robust code.
+
+Typescript doesnot run in browser. It compiles to Javascript
+This population is handled by CLI
+
+--------------------------------------
+Project setup with Bootstrap style
+
+my-first-app>npm install --save bootstrap@3
+This command will install the bootstrap locally in this project. Not globally
+stores boorstrap in node_modules folder.
+
+Now Angular should be aware of this bootstrap. So, mention below details in angular.json file
+under "architect": {        "build": {
+
+ "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+--------------------------------------
+
+Creating a new component
+
+server folder under app
+server.component.ts
+server.component.html
+
+@Component is a decorator
+
+server.component.ts file data
+import { Component } from '@angular/core';
+@Component({
+  selector: 'app-server',
+  templateUrl: './server.component.html'
+})
+export class ServerComponent {
+
+}
+
+add this code in app.module.ts file
+Need to register new components in the declarations array.
+
+import {ServerComponent } from './server/server.component';
+declarations: [
+    AppComponent,
+    ServerComponent
+  ],
+  
+modify app.component.html file
+<app-server></app-server>  
+
+
+Creating component using CLI
+ng g c servers
+ng generate component
+--------------------------------------
+Adding styles to component
+
+@Component({
+  selector: 'app-servers',
+  templateUrl: './servers.component.html',
+  styleUrls: ['./servers.component.css']
+})
+
+----------------------------------------
+
+Databinding
+
+Data binding is a technique, where the data stays in sync between the component and the view. Whenever the user updates the data in the view, Angular updates the component. When the component gets new data, the Angular updates the view.
+
+The data binding in Angular can be broadly classified into two groups. One way binding or two-way binding
+In one way binding data flows from one direction. Either from view to component or from component to view.
+
+----------
+One way binding
+
+From component to view
+Interpolation
+Interpolation allows us to include expressions as part of any string literal, which we use in our HTML. The angular evaluates the expressions into a string and replaces it in the original string and updates the view. You can use interpolation wherever you use a string literal in the view
+
+The Angular uses the {{ }} (double curly braces) in the template to denote the interpolation. The syntax is as shown below
+
+{{ templateExpression }}
+
+examples:
+serverId: number = 10;
+  serverStatus: string = 'offline';
+
+  getServerStatus() {
+    return this.serverStatus;
+  }
+  
+<p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
+
+------------  
+Property binding
+
+
+--------------
+2 way data binding
+Note: you need to add formsModule.
+
+Adding the ngModel to html file
+
+html file
+<input type="text"  [(ngModel)]="name">
+<p>{{name }}</p>
+
+ts file
+export class AppComponent {
+  title = 'my-first-app';
+  name= 'Maddy';
+}
+
+For above to work, modify below files
+app.module.ts
+import { FormsModule } from '@angular/forms';
+This is type script feature
+
+//Add FormsModule in imports
+imports: [
+    BrowserModule,
+    FormsModule
+  ],
+
+--------------------------------------
+Button click event
+
+ts file
+  allowNewServer = false;
+  serverCreationStatus = 'No server was created!';
+  serverName = 'Testserver';
+  testTitle = 'test title123';
+
+  constructor() {
+    setTimeout(() => {
+      this.allowNewServer = true;
+    }, 2000);
+  }
+
+  ngOnInit(): void {
+  }
+
+  onCreateServer() {
+    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
+  }
+
+
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
+<p>{{ serverCreationStatus }}</p>
+
+-------------------------------------------
+
+Directives
+
+These are the instructions in the DOM.
+component are kind of dirctive
+ngModel is a directive
+--------
+ngIf, ngElse conditions
+
+ngIf is a structural dirctive. So use *
+It changes the structure of DOM
+
+ts file
+allowNewServer = true;
+  serverCreationStatus = 'No server was created!';
+  serverName = 'Testserver';
+  serverCreated = false;
+  
+onCreateServer() {
+    this.serverCreated = true;
+    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
+}
+
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName">
+
+  <button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
+  
+  <p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+
+---------
+Else condition
+  <p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
+
+  <ng-template  #noServer>
+        <p>No server was found</p>
+  </ng-template>
+  
+---------------------------
+
+ngFor example
+
+
+--------------------------------
+
+Services & Dependency Injection
+
+Create a service
+ng g s services/post
+
+------------------------------------
+
+Routing
+
+
+
+
+------------------------------------------
+Course Structures
+Basics
+Components & Databinding
+Directives
+Services & Dependency Injection
+Routing
+Observables
+Forms
+Pipes
+Http
+Authentication
+Testing
+
+
+--------------------
+Queries
+
+constructor v/s ngOnInit
+what is strict mode ?
+Link input type with ngModel
+2 way data binding
+Directive
+what is TypeScript
+Local reference
+
+----------------------
+
+Notes
+
+When someone gives src folder, without node_modules, do these things
+Run "npm install" inside this project folder to install all dependencies.
+
+
+Add this line in : tsconfig.json file. otherwise, you have to initialize the member variable of a class.
+"strictPropertyInitialization": false
+
+
+ngModel is a directive
+
