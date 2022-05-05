@@ -18,8 +18,8 @@ The Angular CLI is used for much more than just creating an Angular project. It 
 -------------------------
 Run below commands
 Install cli globally
-npm install -g @angular/cli@latest   
-or you can use :  npm install -g @angular/cli
+npm install -g @angular/cli@latest   
+or you can use :  npm install -g @angular/cli
 
 Create angular project
 ng new my-first-app --no-strict
@@ -45,12 +45,12 @@ index.html
 app.component.ts : check the selector
 main.ts : this is the first code which gets executed.
 platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+  .catch(err => console.error(err));
 This bootstraps the angular application by passing the AppModule
 
 check app.module.ts file
-bootstrap: [AppComponent]  //Lists all the comp which should be known to angular at the point of time it analyzes index.html file
-  
+bootstrap: [AppComponent]  //Lists all the comp which should be known to angular at the point of time it analyzes index.html file
+  
 --------------------
 
 
@@ -71,12 +71,12 @@ This command will install the bootstrap locally in this project. Not globally
 stores boorstrap in node_modules folder.
 
 Now Angular should be aware of this bootstrap. So, mention below details in angular.json file
-under "architect": {        "build": {
+under "architect": {        "build": {
 
- "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css"
-            ],
+ "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
 --------------------------------------
 
 Creating a new component
@@ -92,8 +92,8 @@ server.component.ts file data
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-server',
-  templateUrl: './server.component.html'
+  selector: 'app-server',
+  templateUrl: './server.component.html'
 })
 export class ServerComponent {
 
@@ -105,12 +105,12 @@ Need to register new components in the declarations array.
 import {ServerComponent } from './server/server.component';
 
 declarations: [
-    AppComponent,
-    ServerComponent
-  ],
-  
+    AppComponent,
+    ServerComponent
+  ],
+  
 modify app.component.html file
-<app-server></app-server>  
+<app-server></app-server>  
 
 
 Creating component using CLI
@@ -120,9 +120,9 @@ ng generate component servers
 Adding styles to component
 
 @Component({
-  selector: 'app-servers',
-  templateUrl: './servers.component.html',
-  styleUrls: ['./servers.component.css']
+  selector: 'app-servers',
+  templateUrl: './servers.component.html',
+  styleUrls: ['./servers.component.css']
 })
 
 ----------------------------------------
@@ -147,15 +147,15 @@ The Angular uses the {{ }} (double curly braces) in the template to denote the i
 
 examples:
 serverId: number = 10;
-  serverStatus: string = 'offline';
+  serverStatus: string = 'offline';
 
-  getServerStatus() {
-    return this.serverStatus;
-  }
-  
+  getServerStatus() {
+    return this.serverStatus;
+  }
+  
 <p>{{ 'Server' }} with ID {{ serverId }} is {{ getServerStatus() }}</p>
 
-------------  
+------------  
 Property binding
 
 
@@ -166,13 +166,13 @@ Note: you need to add formsModule.
 Adding the ngModel to html file
 
 html file
-<input type="text"  [(ngModel)]="name">
+<input type="text"  [(ngModel)]="name">
 <p>{{name }}</p>
 
 ts file
 export class AppComponent {
-  title = 'my-first-app';
-  name= 'Maddy';
+  title = 'my-first-app';
+  name= 'Maddy';
 }
 
 For above to work, modify below files
@@ -182,37 +182,37 @@ This is type script feature
 
 //Add FormsModule in imports
 imports: [
-    BrowserModule,
-    FormsModule
-  ],
+    BrowserModule,
+    FormsModule
+  ],
 
 --------------------------------------
 Button click event
 
 ts file
-  allowNewServer = false;
-  serverCreationStatus = 'No server was created!';
-  serverName = 'Testserver';
-   
+  allowNewServer = false;
+  serverCreationStatus = 'No server was created!';
+  serverName = 'Testserver';
+   
 
-  constructor() {
-    setTimeout(() => {
-      this.allowNewServer = true;
-    }, 2000);
-  }
+  constructor() {
+    setTimeout(() => {
+      this.allowNewServer = true;
+    }, 2000);
+  }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {
+  }
 
-  onCreateServer() {
-    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
-  }
+  onCreateServer() {
+    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
+  }
 
 
 <button
-  class="btn btn-primary"
-  [disabled]="!allowNewServer"
-  (click)="onCreateServer()">Add Server</button>
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
 <p>{{ serverCreationStatus }}</p>
 
 -------------------------------------------
@@ -230,35 +230,35 @@ It changes the structure of DOM
 
 ts file
 allowNewServer = true;
-  serverCreationStatus = 'No server was created!';
-  serverName = 'Testserver';
-  serverCreated = false;
-  
+  serverCreationStatus = 'No server was created!';
+  serverName = 'Testserver';
+  serverCreated = false;
+  
 onCreateServer() {
-    this.serverCreated = true;
-    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
+    this.serverCreated = true;
+    this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
 }
 
 <input
-  type="text"
-  class="form-control"
-  [(ngModel)]="serverName">
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName">
 
-  <button
-  class="btn btn-primary"
-  [disabled]="!allowNewServer"
-  (click)="onCreateServer()">Add Server</button>
-  
-  <p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+  <button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
+  
+  <p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
 
 ---------
 Else condition
-  <p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
+  <p *ngIf="serverCreated; else noServer">Server was created, server name is {{ serverName }}</p>
 
-  <ng-template  #noServer>
-        <p>No server was found</p>
-  </ng-template>
-  
+  <ng-template  #noServer>
+        <p>No server was found</p>
+  </ng-template>
+  
 ---------------------------
 
 ngFor example
@@ -274,7 +274,7 @@ A component can delegate certain tasks to services, such as fetching data from t
 By default, the Angular CLI command ng generate service registers a provider with the root injector for your service by including provider metadata in the @Injectable() decorator.
 ----------------
 @Injectable({
- providedIn: 'root',
+ providedIn: 'root',
 })
 When you provide the service at the root level, Angular creates a single, shared instance of created service and injects it into any class that asks for it.
 ----------------
@@ -286,61 +286,61 @@ ng g s services/post
 import HttpClientModule to app.module.ts file
 import { HttpClientModule } from '@angular/common/http';
 imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
-  
+    BrowserModule,
+    HttpClientModule
+  ],
+  
 
 add below content in service.ts file
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-  
+  
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'
 })
 export class PostService {
-  private url = 'http://jsonplaceholder.typicode.com/posts';
-   
-  constructor(private httpClient: HttpClient) { }
-  
-  getPosts(){
-    return this.httpClient.get(this.url);
-  }
-  
-}  
+  private url = 'http://jsonplaceholder.typicode.com/posts';
+   
+  constructor(private httpClient: HttpClient) { }
+  
+  getPosts(){
+    return this.httpClient.get(this.url);
+  }
+  
+}  
 
 ---------
 Modify app.component.ts file
 import { Component, OnInit } from '@angular/core';
 import { PostService } from './services/post.service';
-  
+  
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  posts:any;
-  
-  constructor(private service:PostService) {}
-  
-  ngOnInit() {
-      this.service.getPosts()
-        .subscribe(response => {
-          this.posts = response;
-        });
-  }
+  posts:any;
+  
+  constructor(private service:PostService) {}
+  
+  ngOnInit() {
+      this.service.getPosts()
+        .subscribe(response => {
+          this.posts = response;
+        });
+  }
 }
 
 ----------
 add below content in app.component.html file
 <ul class="list-group">
-  <li 
-      *ngFor="let post of posts"
-      class="list-group-item">
-      {{ post.title }}
-  </li>
+  <li 
+      *ngFor="let post of posts"
+      class="list-group-item">
+      {{ post.title }}
+  </li>
 </ul>
 
 ------------------------------------
@@ -357,18 +357,18 @@ are now registered in our Angular app on this RouterModule which gives us this r
 
 import { Routes, RouterModule } from '@angular/router';
 
-const appRoutes :  Routes = [
-   { path : '', component: LoginComponent },
-   { path : 'regis', component: RegistrationComponent },
-   { path : 'login', component: LoginComponent }
+const appRoutes :  Routes = [
+   { path : '', component: LoginComponent },
+   { path : 'regis', component: RegistrationComponent },
+   { path : 'login', component: LoginComponent }
 ];
 
 
- imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRoutes)
-  ],
-  
+ imports: [
+    BrowserModule,
+    RouterModule.forRoot(appRoutes)
+  ],
+  
 add <router-outlet></router-outlet> in app.component.html file
 
 <router-outlet> is a directive
@@ -377,16 +377,16 @@ Create 2 component login, registration
 Add these code
 
 login.component.html
-<a [routerLink] = "['/regis']">Registration page</a>  
+<a [routerLink] = "['/regis']">Registration page</a>  
 
 registration.component.html
 <a [routerLink] = "['/login']">Go to login page</a>
 
 --------------
 Note:
-<a  [routerLink] ="['/regis']"  is absolute path
+<a  [routerLink] ="['/regis']"  is absolute path
 
-<a  [routerLink] ="['regis']"  is relative path. Thir tries to add /regis to the current url
+<a  [routerLink] ="['regis']"  is relative path. Thir tries to add /regis to the current url
 
 ---------------
 Call other component from a component using router
@@ -398,14 +398,14 @@ import { Router } from '@angular/router';
 
 // inject router in constructor
 constructor(private router: Router) { }
- 
+ 
 onLoadServer(){
-    // complex logic
-     this.router.navigate(['/login']);
+    // complex logic
+     this.router.navigate(['/login']);
 } 
 
 // Call this method html file
-<button class="btn btn-primary" (click)="onLoadServer()">Load Server</button>  
+<button class="btn btn-primary" (click)="onLoadServer()">Load Server</button>  
 ----------------
 Note:
 this.router.navigate()
@@ -475,18 +475,18 @@ Common css files
 add below code in angular.json file
 
 "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.css",
-              "src/my-styles.css"
-            ],
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css",
+              "src/my-styles.css"
+            ],
 In these files you can have common css values
 
 -------------------------------------
 
 ngGrid
-https://www.youtube.com/watch?v=iGGaUQFMA08  : angular older version
+https://www.youtube.com/watch?v=iGGaUQFMA08  : angular older version
 
-https://www.c-sharpcorner.com/article/adding-ag-grid-and-enable-sorting-and-filtering/  : new version
+https://www.c-sharpcorner.com/article/adding-ag-grid-and-enable-sorting-and-filtering/  : new version
 
 Create new project
 
@@ -503,112 +503,112 @@ import { AgGridModule } from 'ag-grid-angular';
 import { HttpClientModule } from '@angular/common/http';
 
 imports: [
-    BrowserModule,
+    BrowserModule,
 	HttpClientModule,
-    AgGridModule.withComponents([])
-  ],
+    AgGridModule.withComponents([])
+  ],
 
 Note: with Components takes an array of custom components. This withComponents is used to specify 
 custom cell color or buttons on particular cells.
 
 add the styles in angular.json file
 "styles": [
-              "src/styles.css",
-              "node_modules/ag-grid/dist/styles/ag-grid.css",
-              "node_modules/ag-grid/dist/styles/ag-theme-balham.css"
+              "src/styles.css",
+              "node_modules/ag-grid/dist/styles/ag-grid.css",
+              "node_modules/ag-grid/dist/styles/ag-theme-balham.css"
 ],
 
 
 add the code in app.component.html file
 <ag-grid-angular
-  style="width: 1500px; height: 750px;"
-  class="ag-theme-balham"
-  [columnDefs]="columnDefs"
-  (gridReady)="onGridReady($event)"
+  style="width: 1500px; height: 750px;"
+  class="ag-theme-balham"
+  [columnDefs]="columnDefs"
+  (gridReady)="onGridReady($event)"
 ></ag-grid-angular>
 
 add the code app.component.ts file
 export class AppComponent implements OnInit {
-  title = 'adGrid';
-  gridApi='';
-  gridColumnApi ='';
-  columnDefs = [];
-  sortingOrder3 = [];
+  title = 'adGrid';
+  gridApi='';
+  gridColumnApi ='';
+  columnDefs = [];
+  sortingOrder3 = [];
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {
+  }
 
-  constructor(private http : HttpClient){   
-     this.columnDefs = [
-       {
-         headerName:"Athlete",
-         field:"athlete",
-         width: 150,
-         sortable: true,
-         filter: true,
-         sortingOrder:["asc","desc"]
-       },
-       {
-         headerName:"Age",
-         field:"age",
-         sortable: true,
-         filter: true,
-         width:90,
-         sortingOrder:["desc","asc"]
-       },
-       {
-        headerName:"Country",
-        field:"country",
-        width: 120,
-        sortable: true,
-        filter: true,
-        //enableFilter: true,
-        sortingOrder:["desc",null]
-      },
-      {
-        headerName:"Year",
-        field:"year",
-        width: 90,
-        sortable: true,
-        filter: true,
-        sortingOrder:["asc"]
-      },
-      {
-        headerName:"Gold",
-        field:"gold",
-        width: 90
-      },
-      {
-        headerName:"Silver",
-        field:"silver",
-        width: 90
-      },
-      {
-        headerName:"Bronze",
-        field:"bronze",
-        width: 90
-      },
-      {
-        headerName:"Total",
-        field:"total",
-        width: 90
-      }
-     ];
+  constructor(private http : HttpClient){   
+     this.columnDefs = [
+       {
+         headerName:"Athlete",
+         field:"athlete",
+         width: 150,
+         sortable: true,
+         filter: true,
+         sortingOrder:["asc","desc"]
+       },
+       {
+         headerName:"Age",
+         field:"age",
+         sortable: true,
+         filter: true,
+         width:90,
+         sortingOrder:["desc","asc"]
+       },
+       {
+        headerName:"Country",
+        field:"country",
+        width: 120,
+        sortable: true,
+        filter: true,
+        //enableFilter: true,
+        sortingOrder:["desc",null]
+      },
+      {
+        headerName:"Year",
+        field:"year",
+        width: 90,
+        sortable: true,
+        filter: true,
+        sortingOrder:["asc"]
+      },
+      {
+        headerName:"Gold",
+        field:"gold",
+        width: 90
+      },
+      {
+        headerName:"Silver",
+        field:"silver",
+        width: 90
+      },
+      {
+        headerName:"Bronze",
+        field:"bronze",
+        width: 90
+      },
+      {
+        headerName:"Total",
+        field:"total",
+        width: 90
+      }
+     ];
 
-     this.sortingOrder3=["desc","asc", null]; // is this required ??
-   }
-   onGridReady(params: any){
-         this.gridApi = params.api;
-         this.gridColumnApi=params.columnApi;
-         this.http.get("https://raw.githubusercontent.com/ag-grid/ag-grid-docs/master/src/olympicWinnersSmall.json")
-         .subscribe(data =>{
-              params.api.setRowData(data)
-         })
-        // let dataValue=[{"firstName":"Mahesh", "age":33},{"firstName":"Suresh", "age":18}]
-         //params.api.setRowData(dataValue);
+     this.sortingOrder3=["desc","asc", null]; // is this required ??
+   }
+   onGridReady(params: any){
+         this.gridApi = params.api;
+         this.gridColumnApi=params.columnApi;
+         this.http.get("https://raw.githubusercontent.com/ag-grid/ag-grid-docs/master/src/olympicWinnersSmall.json")
+         .subscribe(data =>{
+              params.api.setRowData(data)
+         })
+        // let dataValue=[{"firstName":"Mahesh", "age":33},{"firstName":"Suresh", "age":18}]
+         //params.api.setRowData(dataValue);
 
-   }
-   
+   }
+   
 
 }
 
@@ -616,6 +616,8 @@ export class AppComponent implements OnInit {
 
 
 query:
+EventEmitter
+https://www.youtube.com/watch?v=4aVXWmIRz7I
 what is default order ?
 now modify component html, ts file
 Can't bind to 'enableFilter' since it isn't a known property of 'ag-grid-angular'.
@@ -635,7 +637,7 @@ this.id = this.route.snapshot.params['id'];
 Routing module ts file
 {path: 'update-employee/:id', component:UpdateEmployeeComponent, canActivate : [AuthGuard]},
 -------------------------------------
-            Handling Forms
+            Handling Forms
 
 Template Driven v/s Reactive approach
 
@@ -647,39 +649,39 @@ steps to follow
 add this in app.module.ts file
 import { FormsModule } from '@angular/forms';
 
- imports: [
-    BrowserModule,
-    FormsModule
-  ],
-  
+ imports: [
+    BrowserModule,
+    FormsModule
+  ],
+  
 --------
 Sample form 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
-        <div id="user-data">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" class="form-control">
-          </div>
-          <button class="btn btn-default" type="button">Suggest an Username</button>
-          <div class="form-group">
-            <label for="email">Mail</label>
-            <input type="email" id="email" class="form-control">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="secret">Secret Questions</label>
-          <select id="secret" class="form-control">
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-        </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
-      </form>
-    </div>
-  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form>
+        <div id="user-data">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control">
+          </div>
+          <button class="btn btn-default" type="button">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input type="email" id="email" class="form-control">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select id="secret" class="form-control">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
 </div>
 
 ------------
@@ -710,42 +712,42 @@ form is the type of HTMLFormElement
 
 import { Component, ElementRef } from '@angular/core';
 
-  mySubmit(form: ElementRef){
-       console.log('Submitted');
-       console.log(form);
-  }
+  mySubmit(form: ElementRef){
+       console.log('Submitted');
+       console.log(form);
+  }
 --------
 <form (ngSubmit) ="mySubmit(fr)" #fr="ngForm">
 it tells Angular: give me access to this form you created automatically.
 this is how you get access to the form, to this Javascript object created by Angular automatically.
 
- <input 
-                type="text" 
-                id="username" 
-                class="form-control"
-                ngModel name="username">
+ <input 
+                type="text" 
+                id="username" 
+                class="form-control"
+                ngModel name="username">
 				
- <input 
-                type="email" 
-                id="email" 
-                class="form-control"
-                ngModel name="email">
+ <input 
+                type="email" 
+                id="email" 
+                class="form-control"
+                ngModel name="email">
 <select 
-                id="secret" 
-                class="form-control"
-                ngModel name="secret">
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-		  
+                id="secret" 
+                class="form-control"
+                ngModel name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+		  
 import { NgForm } from '@angular/forms';
 
 
-  mySubmit(form: NgForm){
-       console.log('Submitted');
-       console.log(form);
-  }
-  
+  mySubmit(form: NgForm){
+       console.log('Submitted');
+       console.log(form);
+  }
+  
 ------------
 Accessing the Form with @ViewChild
 
@@ -757,11 +759,11 @@ import { Component, ViewChild } from '@angular/core';
 
 
 export class AppComponent {
-  @ViewChild('fr') signupFrm : NgForm;
-  
-   mySubmit(){
-      console.log(this.signupFrm);
-  }
+  @ViewChild('fr') signupFrm : NgForm;
+  
+   mySubmit(){
+      console.log(this.signupFrm);
+  }
 }
 
 A ViewChild is a component, directive, or element as a part of a template. If we want to access a child component, directive, DOM element inside the parent component, we use the decorator @ViewChild() in Angular.
@@ -769,7 +771,7 @@ A ViewChild is a component, directive, or element as a part of a template. If we
 
 Usecase: 
 this is especially useful if you need to access the form, not just at the point of time when you submit it
-but also earlier  
+but also earlier  
 
 -----------------
 Adding Validation to check User Input
@@ -783,62 +785,62 @@ example: touched,
 
 For the template-driven approach, you need the directives. You can find out their names, by searching for "validator" in the official docs: https://angular.io/api?type=directive - everything marked with "D" is a directive and can be added to your template.
 
-Additionally, you might also want to enable HTML5 validation (by default, Angular disables it). You can do so by adding the ngNativeValidate  to a control in your template.
+Additionally, you might also want to enable HTML5 validation (by default, Angular disables it). You can do so by adding the ngNativeValidate  to a control in your template.
 
 <input 
-                type="text" 
-                id="username" 
-                class="form-control"
-                ngModel name="username"
-                required>
+                type="text" 
+                id="username" 
+                class="form-control"
+                ngModel name="username"
+                required>
 
 <input 
-                type="email" 
-                id="email" 
-                class="form-control"
-                ngModel name="email"
-                required
-                email>
+                type="email" 
+                id="email" 
+                class="form-control"
+                ngModel name="email"
+                required
+                email>
 ---------------
 Using the Form State
 
 <button 
-             class="btn btn-primary" 
-             type="submit"
-             [disabled]="!fr.valid">Submit</button>
+             class="btn btn-primary" 
+             type="submit"
+             [disabled]="!fr.valid">Submit</button>
 fr is the reference to the form.
 
 try this styling
 
 .container{
-   margin-top: 30px;
+   margin-top: 30px;
 }
 .ng-invalid{
-   border: 1px solid red;
+   border: 1px solid red;
 }
 
 input.ng-invalid, select.ng-invalid {
-   border: 1px solid red;
+   border: 1px solid red;
 }
 
 Above shows the red border even before entering any details.
 
 input.ng-invalid.ng-touched, select.ng-invalid {
-   border: 1px solid red;
+   border: 1px solid red;
 }
 
 -------------
 Outputting validation error message.
 
- <input 
-                type="email" 
-                id="email" 
-                class="form-control"
-                ngModel name="email"
-                required
-                email
-                #testemail="ngModel">
-                <span class="help-block" *ngIf="!testemail.valid && testemail.touched">Please enter a valid email</span>
+ <input 
+                type="email" 
+                id="email" 
+                class="form-control"
+                ngModel name="email"
+                required
+                email
+                #testemail="ngModel">
+                <span class="help-block" *ngIf="!testemail.valid && testemail.touched">Please enter a valid email</span>
 				
 ngModel directive here also kind of exposes some additional information about the control it creates
 for us on the overarching form by accessing ngModel.
@@ -861,29 +863,29 @@ html file
 
 ts file
 export class AppComponent {
-  title = 'form-test';
-  defaultQuestion = 'pet';
+  title = 'form-test';
+  defaultQuestion = 'pet';
 }
-  
+  
 ----------------
 Using ngModel with 2 way binding
 
 ts file
 export class AppComponent {
-  defaultQuestion = 'pet';
-  answer='';  
+  defaultQuestion = 'pet';
+  answer='';  
 }
 
 html file
 <div class="form-group">
-          <textarea
-              name="questionAnswer"
-              rows="3"
-              class="form-control"
-              [(ngModel)]="answer"
-          ></textarea>   
-</div>  
-<p>Your reply: {{answer}}</p>  
+          <textarea
+              name="questionAnswer"
+              rows="3"
+              class="form-control"
+              [(ngModel)]="answer"
+          ></textarea>   
+</div>  
+<p>Your reply: {{answer}}</p>  
 
 
 ----------------------
@@ -891,9 +893,9 @@ Grouping Form controls
 
 Keep username, email in a single div
 <div 
-            id="user-data" 
-            ngModelGroup="userData"
-            #userData="ngModelGroup">
+            id="user-data" 
+            ngModelGroup="userData"
+            #userData="ngModelGroup">
 
 </div>
 <p *ngIf="!userData.valid && userData.touched">User data is invalid</p>			
@@ -906,15 +908,15 @@ ts file
 genders = ['male','female'];
 
 html file
- <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input
-                  type="radio"
-                  name="gender"
-                  ngModel
-                  required
-                  [value]="gender">{{gender}}
-          </label>
+ <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+                  type="radio"
+                  name="gender"
+                  ngModel
+                  required
+                  [value]="gender">{{gender}}
+          </label>
 </div>
 
 Query : How to provide default value to radio button?
@@ -923,33 +925,33 @@ Query : How to provide default value to radio button?
 
 Suggest Username button
 <button 
-               class="btn btn-default" 
-               type="button"
-               (click)="suggestUserName()">Suggest an Username</button>
+               class="btn btn-default" 
+               type="button"
+               (click)="suggestUserName()">Suggest an Username</button>
 ts file
 
 @ViewChild('fr') signupFrm : NgForm
 
- suggestUserName(){
-    const suggestedUserName='testUserName';
-    this.signupFrm.setValue({
-      userData:{
-        username: suggestedUserName,
-        email: ''
-      },
-      secret:'pet',
-      questionAnswer:'',
-      gender:'female'
-    })
-  } 
+ suggestUserName(){
+    const suggestedUserName='testUserName';
+    this.signupFrm.setValue({
+      userData:{
+        username: suggestedUserName,
+        email: ''
+      },
+      secret:'pet',
+      questionAnswer:'',
+      gender:'female'
+    })
+  } 
 
 To override only username, then use below code
 
- this.signupFrm.form.patchValue({
-      userData:{
-        username: suggestedUserName
-      }
-    })
+ this.signupFrm.form.patchValue({
+      userData:{
+        username: suggestedUserName
+      }
+    })
 	
 --------------------------------
 Get form values in ts file before submitting and on some button click.
@@ -961,35 +963,35 @@ Get form data after submitting and to display
 Create json object in ts file
 
 user = {
-    username:'',
-    email:'',
-    secretQuery: '',
-    answer:'',
-    gender:''
-  };
+    username:'',
+    email:'',
+    secretQuery: '',
+    answer:'',
+    gender:''
+  };
 submitted = false;
 
- mySubmit(){ 
-      this.submitted = true;
-      this.user.username = this.signupFrm.value.userData.username;
-      this.user.email = this.signupFrm.value.userData.email;
-      this.user.secretQuery = this.signupFrm.value.secret;
-      this.user.answer = this.signupFrm.value.questionAnswer;
-      this.user.gender = this.signupFrm.value.gender;
+ mySubmit(){ 
+      this.submitted = true;
+      this.user.username = this.signupFrm.value.userData.username;
+      this.user.email = this.signupFrm.value.userData.email;
+      this.user.secretQuery = this.signupFrm.value.secret;
+      this.user.answer = this.signupFrm.value.questionAnswer;
+      this.user.gender = this.signupFrm.value.gender;
 }
- 
+ 
 Display this value in html
- <hr>
-  <div class="row" *ngIf="submitted">
-    <div class="col-xs-12">
-      <h3>Your Data</h3>
-      <p>Username:  {{user.username}}</p>
-      <p>Mail: {{user.email}}</p>
-      <p>Secret Question: {{user.secretQuery}}</p>
-      <p>Answer: {{user.answer}}</p>
-      <p>Gender: {{user.gender}}</p>
-    </div>
-  </div>
+ <hr>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username:  {{user.username}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: {{user.secretQuery}}</p>
+      <p>Answer: {{user.answer}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div>
 ------------------------------
 
 Resetting Forms
@@ -1000,162 +1002,162 @@ this.signupFrm.reset();
 Final code of ts, html file
 
 TS file
- 
+ 
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, NgForm, NgModelGroup } from '@angular/forms';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'form-test';
-  defaultQuestion = 'pet';
-  answer=''; 
-  genders = ['male','female'];
-  defaultGender = 'male';
+  title = 'form-test';
+  defaultQuestion = 'pet';
+  answer=''; 
+  genders = ['male','female'];
+  defaultGender = 'male';
 
-  user = {
-    username:'',
-    email:'',
-    secretQuery: '',
-    answer:'',
-    gender:''
-  };
-  submitted = false;
+  user = {
+    username:'',
+    email:'',
+    secretQuery: '',
+    answer:'',
+    gender:''
+  };
+  submitted = false;
 
-  @ViewChild('fr') signupFrm : NgForm;
+  @ViewChild('fr') signupFrm : NgForm;
 
-  // mySubmit(form: NgForm){
-  //      console.log('Submitted');
-  //      console.log(form);
-  // }
+  // mySubmit(form: NgForm){
+  //      console.log('Submitted');
+  //      console.log(form);
+  // }
 
-  suggestUserName(){
-    const suggestedUserName='testUserName';
-    const test = this.signupFrm.value.userData.username;
-    console.log('current username is: '+test);
-    // this.signupFrm.setValue({
-    //   userData:{
-    //     username: suggestedUserName,
-    //     email: ''
-    //   },
-    //   secret:'pet',
-    //   questionAnswer:'',
-    //   gender:'female'
-    // })
-    this.signupFrm.form.patchValue({
-      userData:{
-        username: suggestedUserName
-      }
-    })
-  } 
-  mySubmit(){ 
-      this.submitted = true;
-	  console.log(this.signupFrm);
-      this.user.username = this.signupFrm.value.userData.username;
-      this.user.email = this.signupFrm.value.userData.email;
-      this.user.secretQuery = this.signupFrm.value.secret;
-      this.user.answer = this.signupFrm.value.questionAnswer;
-      this.user.gender = this.signupFrm.value.gender;
+  suggestUserName(){
+    const suggestedUserName='testUserName';
+    const test = this.signupFrm.value.userData.username;
+    console.log('current username is: '+test);
+    // this.signupFrm.setValue({
+    //   userData:{
+    //     username: suggestedUserName,
+    //     email: ''
+    //   },
+    //   secret:'pet',
+    //   questionAnswer:'',
+    //   gender:'female'
+    // })
+    this.signupFrm.form.patchValue({
+      userData:{
+        username: suggestedUserName
+      }
+    })
+  } 
+  mySubmit(){ 
+      this.submitted = true;
+	  console.log(this.signupFrm);
+      this.user.username = this.signupFrm.value.userData.username;
+      this.user.email = this.signupFrm.value.userData.email;
+      this.user.secretQuery = this.signupFrm.value.secret;
+      this.user.answer = this.signupFrm.value.questionAnswer;
+      this.user.gender = this.signupFrm.value.gender;
 
-      this.signupFrm.reset();
-  }
+      this.signupFrm.reset();
+  }
 }
 
 
 HTML file
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit) ="mySubmit()" #fr="ngForm">
-        <div 
-            id="user-data" 
-            ngModelGroup="userData"
-            #userData1="ngModelGroup">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input 
-                type="text" 
-                id="username" 
-                class="form-control"
-                ngModel
-                name="username"
-                required>
-          </div>
-          <button 
-               class="btn btn-default" 
-               type="button"
-               (click)="suggestUserName()">Suggest an Username</button>
-          <div class="form-group">
-            <label for="email">Mail</label>
-            <input 
-                type="email" 
-                id="email" 
-                class="form-control"
-                ngModel name="email"
-                required
-                email
-                #testemail="ngModel">
-                <span class="help-block" *ngIf="!testemail.valid && testemail.touched">Please enter a valid email</span>
-          </div>
-        </div>
-        <p *ngIf="!userData1.valid && userData1.touched">User data is invalid</p>
-        <div class="form-group">
-          <label for="secret">Secret Questions</label>
-          <select 
-                id="secret" 
-                class="form-control"
-                [ngModel]="defaultQuestion"
-                name="secret">
-            <option value="pet">Your first Pet?</option>
-            <option value="teacher">Your first teacher?</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <textarea
-              name="questionAnswer"
-              rows="3"
-              class="form-control"
-              [(ngModel)]="answer"
-          ></textarea>   
-        </div>  
-        <p>Your reply: {{answer}}</p>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit) ="mySubmit()" #fr="ngForm">
+        <div 
+            id="user-data" 
+            ngModelGroup="userData"
+            #userData1="ngModelGroup">
+          <div class="form-group">
+            <label for="username">Username</label>
+            <input 
+                type="text" 
+                id="username" 
+                class="form-control"
+                ngModel
+                name="username"
+                required>
+          </div>
+          <button 
+               class="btn btn-default" 
+               type="button"
+               (click)="suggestUserName()">Suggest an Username</button>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input 
+                type="email" 
+                id="email" 
+                class="form-control"
+                ngModel name="email"
+                required
+                email
+                #testemail="ngModel">
+                <span class="help-block" *ngIf="!testemail.valid && testemail.touched">Please enter a valid email</span>
+          </div>
+        </div>
+        <p *ngIf="!userData1.valid && userData1.touched">User data is invalid</p>
+        <div class="form-group">
+          <label for="secret">Secret Questions</label>
+          <select 
+                id="secret" 
+                class="form-control"
+                [ngModel]="defaultQuestion"
+                name="secret">
+            <option value="pet">Your first Pet?</option>
+            <option value="teacher">Your first teacher?</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <textarea
+              name="questionAnswer"
+              rows="3"
+              class="form-control"
+              [(ngModel)]="answer"
+          ></textarea>   
+        </div>  
+        <p>Your reply: {{answer}}</p>
 
-        <div class="radio" *ngFor="let gender of genders">
-          <label>
-            <input
-                  type="radio"
-                  name="gender"
-                  ngModel
-                  required
-                  [value]="gender">{{gender}}
-          </label>
-        </div>
-        <button 
-             class="btn btn-primary" 
-             type="submit"
-             [disabled]="!fr.valid">Submit</button>
-      </form>
-    </div>
-  </div>
-  
-  <hr>
-  <div class="row" *ngIf="submitted">
-    <div class="col-xs-12">
-      <h3>Your Data</h3>
-      <p>Username:  {{user.username}}</p>
-      <p>Mail: {{user.email}}</p>
-      <p>Secret Question: Your First {{user.secretQuery}}</p>
-      <p>Answer: {{user.answer}}</p>
-      <p>Gender: {{user.gender}}</p>
-    </div>
-  </div>
+        <div class="radio" *ngFor="let gender of genders">
+          <label>
+            <input
+                  type="radio"
+                  name="gender"
+                  ngModel
+                  required
+                  [value]="gender">{{gender}}
+          </label>
+        </div>
+        <button 
+             class="btn btn-primary" 
+             type="submit"
+             [disabled]="!fr.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <hr>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>Username:  {{user.username}}</p>
+      <p>Mail: {{user.email}}</p>
+      <p>Secret Question: Your First {{user.secretQuery}}</p>
+      <p>Answer: {{user.answer}}</p>
+      <p>Gender: {{user.gender}}</p>
+    </div>
+  </div>
 </div>
- 
-  
+ 
+  
 -------------------------------------
 Form Validation and Services Integration
 
@@ -1172,14 +1174,14 @@ import { RouterModule, Routes } from '@angular/router';
 
 
 const routes: Routes = [
-  ];
+  ];
 
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-  })
-  export class AppRoutingModule { }
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  export class AppRoutingModule { }
 
 -------------
 Add below line of code in app.module.ts file
@@ -1200,8 +1202,8 @@ Add this code in app.component.html file
 Modify app-routing.module.ts file to include the url
 
 const routes: Routes = [
-    {path: 'regis', component:RegistrationComponent },
-    {path: 'login', component:LoginComponent}
+    {path: 'regis', component:RegistrationComponent },
+    {path: 'login', component:LoginComponent}
 ];
 
 --------------
@@ -1218,14 +1220,14 @@ Add this content
 
 export class User {
 
-    id:number;
-    emailId:string;
-    userName:string;
-    password:string;
+    id:number;
+    emailId:string;
+    userName:string;
+    password:string;
 
-    constructor(id?:number,emailId?:string,userName?:string,password?:string){
-        
-    }
+    constructor(id?:number,emailId?:string,userName?:string,password?:string){
+        
+    }
 }
 
 ------------
@@ -1236,66 +1238,66 @@ import { User } from '../user';
 user = new User();
 msg='';
 responseStatus='';
-  
+  
 create a dummy method: registerUser
 
 Add below code in registration.component.html file
 
 <div class="container">
-    <div class="col-md-6 offset-md-3">
-        <h3>User Registration</h3>
-        
-        <form #regForm="ngForm" (ngSubmit)="registerUser()">
-            <span class="text-danger">{{msg}}</span> 
-          <div class="form-group">
-                <label>Email: </label>
-                <input type="email" class="form-control" id="email"
-                placeholder="Enter email" name="email" 
-                required
-                email 
-                #email="ngModel"
-                [(ngModel)]="user.emailId">
-                <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
-            </div>
-            <div class="form-group">
-                <label>Username: </label>
-                <input type="text" class="form-control"
-                    id="username" name="username"
-                    placeholder="Enter username" 
-                    required
-                    #username="ngModel"
-                    [(ngModel)]="user.userName">
-                    <span class="text-danger" *ngIf="!username.valid && username.touched">Please enter username!</span>    
-            </div>    
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" class="form-control" id="password"
-                placeholder="Enter password" 
-                name="password"
-                required 
-                #password="ngModel"
-                [(ngModel)]="user.password">
-                <span class="text-danger" *ngIf="!password.valid && password.touched">Please enter password !</span>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password:</label>
-                <input type="password" class="form-control" id="cpassword"
-                placeholder="Enter password again." 
-                name="cpassword"
-                required 
-                #cpassword="ngModel"
-                (ngModel)="user.password">
-                <span class="text-danger" *ngIf="!(cpassword.value ==password.value) && cpassword.touched">Password and Confirm password must match.</span>
-            </div>
-             
-            <button class="btn btn-info" type="submit"
-            [disabled]="!regForm.valid">Register</button>
-        
-        </form>
-       <!-- <small class ="float-right" (click)="gotoRegistration()">New User? Register Here.</small> -->
-       <small class ="float-right" [routerLink]= "['/login']">Existing user? Login here.</small> 
-        </div>
-    </div>    
+    <div class="col-md-6 offset-md-3">
+        <h3>User Registration</h3>
+        
+        <form #regForm="ngForm" (ngSubmit)="registerUser()">
+            <span class="text-danger">{{msg}}</span> 
+          <div class="form-group">
+                <label>Email: </label>
+                <input type="email" class="form-control" id="email"
+                placeholder="Enter email" name="email" 
+                required
+                email 
+                #email="ngModel"
+                [(ngModel)]="user.emailId">
+                <span class="text-danger" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+            </div>
+            <div class="form-group">
+                <label>Username: </label>
+                <input type="text" class="form-control"
+                    id="username" name="username"
+                    placeholder="Enter username" 
+                    required
+                    #username="ngModel"
+                    [(ngModel)]="user.userName">
+                    <span class="text-danger" *ngIf="!username.valid && username.touched">Please enter username!</span>    
+            </div>    
+            <div class="form-group">
+                <label>Password:</label>
+                <input type="password" class="form-control" id="password"
+                placeholder="Enter password" 
+                name="password"
+                required 
+                #password="ngModel"
+                [(ngModel)]="user.password">
+                <span class="text-danger" *ngIf="!password.valid && password.touched">Please enter password !</span>
+            </div>
+            <div class="form-group">
+                <label>Confirm Password:</label>
+                <input type="password" class="form-control" id="cpassword"
+                placeholder="Enter password again." 
+                name="cpassword"
+                required 
+                #cpassword="ngModel"
+                (ngModel)="user.password">
+                <span class="text-danger" *ngIf="!(cpassword.value ==password.value) && cpassword.touched">Password and Confirm password must match.</span>
+            </div>
+             
+            <button class="btn btn-info" type="submit"
+            [disabled]="!regForm.valid">Register</button>
+        
+        </form>
+       <!-- <small class ="float-right" (click)="gotoRegistration()">New User? Register Here.</small> -->
+       <small class ="float-right" [routerLink]= "['/login']">Existing user? Login here.</small> 
+        </div>
+    </div>    
 
 ----------------
 Modify RegistrationService.ts file
@@ -1304,19 +1306,19 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
-  constructor(private _http : HttpClient) { }
+  constructor(private _http : HttpClient) { }
 
-  public loginUserFromRemote(user: User): Observable<any>{
-      return this._http.post<any>("http://localhost:8080/login", user)
-  }
-  
-  public registerUserFromRemote(user: User): Observable<any>{
-    return this._http.post<any>("http://localhost:8080/registeruser",user);
-  }
+  public loginUserFromRemote(user: User): Observable<any>{
+      return this._http.post<any>("http://localhost:8080/login", user)
+  }
+  
+  public registerUserFromRemote(user: User): Observable<any>{
+    return this._http.post<any>("http://localhost:8080/registeruser",user);
+  }
 
-  handleError(error: Response){
+  handleError(error: Response){
 
-  }
+  }
 ----------------------
 Modify registration.component.ts file:
 Add router, registration service object.
@@ -1327,21 +1329,21 @@ import { Router } from '@angular/router';
 constructor(private _service : RegistrationService, private _router: Router) { }
 
 Add this code in registerUser method
-    this._service.registerUserFromRemote(this.user).subscribe(
-      data =>{
-        console.log("response received");
-        //this.msg = " Registration successful";
-        this._router.navigate(['/login'])
-      },
-      error=> {
-        console.log("exception occurred");
-        this.msg="Bad details";
-        this.responseStatus = error.status;
-        console.log(error);
-      }
-    )
+    this._service.registerUserFromRemote(this.user).subscribe(
+      data =>{
+        console.log("response received");
+        //this.msg = " Registration successful";
+        this._router.navigate(['/login'])
+      },
+      error=> {
+        console.log("exception occurred");
+        this.msg="Bad details";
+        this.responseStatus = error.status;
+        console.log(error);
+      }
+    )
 ------------------------------------
-List box  (single + multi select)
+List box  (single + multi select)
 
 install module
 npm install --save primeng
@@ -1351,15 +1353,40 @@ import FormsModule
 app.module.ts file
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } 
-    from "@angular/platform-browser/animations";
+    from "@angular/platform-browser/animations";
 import { ListboxModule } from "primeng/listbox";	
 
 ------------------------------------
 Observable concept
 
-Observable in Angular is a feature that provides support for delivering messages between different parts of your single-page application. This feature is frequently used in Angular because it is responsible for handling multiple values, asynchronous programming in Javascript
-, and also event handling processes.
+An observable basically can be thought of as a data source.
+Now in our Angular project, an observable basically just is an object we import from a third-party package : RxJS. 
+It follows the observable pattern. so we have an observable and we have an observer. In between,
+we have a stream,  a timeline and on this timeline, we can have multiple events emitted by the observable.
+So the observable could emit data because you trigger it to do so,you can do that programmatically,
+it could be connected to a button and therefore whenever the button is clicked, an event in a data package
+is emitted automatically or as the Angular HTTP service does it, it's connected to a HTTP request.
+So when the response returns, the response is emitted as a data package
 
+Observer : this actually is your code you could say. It's the subscribe function.
+There, you have three ways of handling data packages -
+you can handle the normal data, you can handle errors or you can handle the completion of the observable
+Because these are the three types of data packages you can receive 
+We have to write this code.
+We use this concept to handle the asynchronous tasks.
+
+this.route.params.subscribe
+here params is a observable. We are subscribing to the observable
+
+
+ngOnInit(): void {
+
+    interval(1000).subscribe(count =>{
+      console.log(count);
+    })
+  }
+  
+interval method gives observable.
 
 
 
@@ -1383,43 +1410,43 @@ Note: This name can be anything.
 
 Write this code in app.component.ts
 constructor(private dialogRef : MatDialog){}
-  
-  customOpenDialog(){
-    this.dialogRef.open(PopUpComponent);
-  }
+  
+  customOpenDialog(){
+    this.dialogRef.open(PopUpComponent);
+  }
 
 Write this in app.component.html file
 <button (click)="customOpenDialog()">
-    Click to open pop up
+    Click to open pop up
 </button>
 
 ------------
 Modify the above code as shown below.
 
 app.component.ts file
- title = 'my-first-app';
-  name= 'Maddy';
+ title = 'my-first-app';
+  name= 'Maddy';
 
-  constructor(private dialogRef : MatDialog){}
-  
-  customOpenDialog(){
-    this.dialogRef.open(PopUpComponent,{
-      data:{
-        name: 'Samuel',
-        designation: 'Tech Lead'
-      }
-    });
-  }
+  constructor(private dialogRef : MatDialog){}
+  
+  customOpenDialog(){
+    this.dialogRef.open(PopUpComponent,{
+      data:{
+        name: 'Samuel',
+        designation: 'Tech Lead'
+      }
+    });
+  }
 ------
 PopUpComponent.ts file
 
 firstName = '';
-  designation = '';
+  designation = '';
 
-  constructor( @Inject(MAT_DIALOG_DATA) public data) { 
-    this.firstName = data.name;
-    this.designation = data.designation;
-  }
+  constructor( @Inject(MAT_DIALOG_DATA) public data) { 
+    this.firstName = data.name;
+    this.designation = data.designation;
+  }
 ------
 popup html file
 
@@ -1448,16 +1475,16 @@ https://www.geeksforgeeks.org/angular-primeng-listbox-component/
 
 ==============================
 
-List box  (single + multi select)
+List box  (single + multi select)
 Mouse over/Click/Double click events
 How to set basic rules on controls
 How to bring a pop up window
 
 ================================
 
-Note: Add if(!form.valid) {}  in ts file
+Note: Add if(!form.valid) {}  in ts file
 Variable declaration in angular
-error : string  = null;
+error : string  = null;
 
 npm install --save ngx-webstorage
 
@@ -1471,3 +1498,45 @@ Login, Registration page
 After registration, show the login page to sign in
 Display error message if registration/login is not successful
 After successful login, show the employee details page.
+
+========================================
+
+Sample Angular project
+
+ng new test-proj --no-strict
+
+install bootstrap 3
+npm install --save bootstrap@3
+add in angular.json file
+"styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+
+-----
+course 103 : take package, get the header component
+------
+create sidebar,login component
+create loading-spinner  component : ng g c shared/loading-spinner
+
+create authService to pass the user details to backend code.
+ng g s services/auth
+
+create model class under model folder.
+add required details in app.module.ts file
+
+modify sidebar component to dynamically display button
+
+Modify app.comonent to handle the refresh part.
+add logout feature
+
+create server related components
+ng g c server/server-details
+ng g c server/edit-server
+ng g c server/server-list
+ng g c server/create-server
+
+------------
+create model, services for server
+ng g s services/server
+
